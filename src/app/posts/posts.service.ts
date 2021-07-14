@@ -23,6 +23,9 @@ export class PostsService {
     return this.http.post<Post[]>(API_LINK, post);
   }
 
+  deletePost(id): Observable<any> {
+    return this.http.delete(API_LINK + '/' + id);
+  }
   /*  getPost() {
     this.http
       .get<{ posts: any }>('http://localhost:3000/post')
@@ -49,6 +52,12 @@ export class PostsService {
 
   getPostUpdateListener(): Observable<Post[]> {
     return this.postsUpdated.asObservable();
+  }
+
+  getPostNow() {
+    this.getPost().subscribe((posts: Post[]) => {
+      this.posts = posts;
+    });
   }
 
   /*  addPost(content: string) {
