@@ -1,0 +1,96 @@
+<div class="card m-8">
+  <div class="card-body">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group col-8">
+          <label>Pseudo</label>
+          <input
+            type="text"
+            formControlName="pseudo"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.pseudo.errors }"
+          />
+          <div *ngIf="submitted && f.pseudo.errors" class="invalid-feedback">
+            <div *ngIf="f.pseudo.errors.required">Pseudo obligatoire</div>
+            <div *ngIf="f.pseudo.errors.minlength">
+              Le pseudo doit compoter au moins 3 caractères
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col-8">
+        <label>Email</label>
+        <input
+          type="text"
+          formControlName="email"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">Email obligatoire</div>
+          <div *ngIf="f.email.errors.email">Email non valide</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-8">
+          <label>Mot de passe</label>
+          <div class="hideIcon">
+            <input
+              [type]="hide ? 'password' : 'text'"
+              formControlName="password"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+            />
+            <mat-icon matSuffix (click)="hide = !hide">{{
+              hide ? 'visibility_off' : 'visibility'
+            }}</mat-icon>
+          </div>
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">
+              Mot de passe obligatoire
+            </div>
+            <div *ngIf="f.password.errors.minlength">
+              Le mot de passe doit compoter au moins 6 caractères
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-8">
+          <label>Confirmer Mot de passe</label>
+          <div class="hideIcon">
+            <input
+              [type]="hide ? 'password' : 'text'"
+              formControlName="confirmPassword"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid': submitted && f.confirmPassword.errors
+              }"
+            />
+            <mat-icon matSuffix (click)="hide = !hide">{{
+              hide ? 'visibility_off' : 'visibility'
+            }}</mat-icon>
+            <div
+              *ngIf="submitted && f.confirmPassword.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.confirmPassword.errors.required">
+                Confirmer le mot de passe
+              </div>
+              <div *ngIf="f.confirmPassword.errors.mustMatch">
+                Le mot de passe doit être identique
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-start">
+        <button class="btn btn-primary m-3">Soumettre</button>
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">
+          Réinitialiser
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
