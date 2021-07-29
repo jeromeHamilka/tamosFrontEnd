@@ -1,0 +1,38 @@
+<form #loginForm="ngForm">
+  username :
+  <input
+    type="text"
+    class="form-control"
+    ngModel
+    required
+    #username="ngModel"
+    name="username"
+  />
+  <div *ngIf="username.invalid && username.touched" class="alert alert-danger">
+    Veuillez renseigner un email valid
+  </div>
+  password :
+  <input
+    type="password"
+    required
+    class="form-control"
+    ngModel
+    minlength="4"
+    name="password"
+  />
+  <div class="text-start">
+    <button
+      class="btn btn-primary m-3"
+      [disabled]="loginForm.invalid"
+      (click)="login(loginForm)"
+    >
+      Connexion
+    </button>
+    <button class="btn btn-secondary" type="reset" (click)="onReset()">
+      Réinitialiser
+    </button>
+    <div class="alert alert-danger" *ngIf="message.length">
+      {{ message }}
+    </div>
+  </div>
+</form>

@@ -7,13 +7,15 @@ import { HeaderComponent } from './header/header.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './auth/signup/signup.component';
 import { MatIconModule } from '@angular/material/icon';
+import { SigninComponent } from './auth/signin/signin.component';
+import { AuthentificationInterceptorProvider } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
     PostListComponent,
     PostCreateComponent,
     SignupComponent,
+    SigninComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,8 +36,11 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     HttpClientModule,
     MatIconModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [
+    AuthentificationInterceptorProvider
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

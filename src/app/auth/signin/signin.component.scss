@@ -1,0 +1,19 @@
+.ng-invalid.ng-dirty {
+  border-color: red;
+}
+
+.ng-valid.ng-dirty {
+  border-color: blue;
+}
+
+form {
+  background: #ffffff;
+  width: 30%;
+  margin: 15% auto;
+  padding: 1%;
+  border-radius: 1%;
+}
+
+input {
+  margin-bottom: 4%;
+}
